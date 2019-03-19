@@ -21,16 +21,14 @@ const morganSetting = (NODE_ENV === 'production')
 
     app.use('/api/notes', notesRouter)
 
-    app.use(function errorHandler(error, req, res, next) {
-        let response;
-        if (NODE_ENV === 'production') {
-            repsonse = {error: {message: 'server error'}}
+    app.use((error, req, res, next) => {
+        let response
+        if (process.env.NODE_ENV === 'production') {
+          response = { error: { message: 'server error' }}
+        } else {
+          response = { error }
         }
-        else {
-            response = {error}
-        }
-        console.log(response);
         res.status(500).json(response)
-    })
+      })
 
     module.exports = app;

@@ -5,13 +5,17 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/server.js",
-    "predeploy": "npm audit",
+    "predeploy": "npm audit && npm run migrate-production",
     "deploy": "git push heroku master",
     "test": "mocha --require test/setup.js",
     "dev": "nodemon src/server.js",
-    "migrate": "postgrator --config postgrator-config.js"
+    "migrate": "postgrator --config postgrator-config.js",
+    "migrate-production": "postgrator --config postgrator-production-config.js"
   },
   "keywords": [],
+  "engines": {
+    "node": "11.7.0"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -29,6 +33,7 @@
     "knex": "^0.16.3",
     "morgan": "^1.9.1",
     "pg": "^7.9.0",
+    "set-tz": "^0.1.0",
     "xss": "^1.0.3"
   }
 }

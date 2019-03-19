@@ -47,6 +47,13 @@ describe.only('Notes Endpoints', () => {
                     })
             })
         })
+        context.only('Given no data', () => {
+            it('GET /api/notes repsonds with empty list', () => {
+                return request(app)
+                    .get('/api/notes')
+                    .expect(200, [])
+            })
+        })
     })
     describe(`POST /api/notes`, () => {
         const testFolders = makeTestFolders()

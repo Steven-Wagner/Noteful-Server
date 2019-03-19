@@ -18,6 +18,7 @@ notesRouter
     .route('/')
     .get((req, res, next) => {
         console.log('getting notes')
+        console.log('db', req.app.get('db'))
         NotesService.getAllNotes(
             req.app.get('db')
         )
